@@ -10,8 +10,8 @@ on:
       - main
 
 jobs:
-  test:
-    name: Test Netflix API
+  test-and-security:
+    name: Test + Trivy + SonarCloud
     runs-on: ubuntu-latest
 
     steps:
@@ -33,14 +33,18 @@ jobs:
         run: |
           python -m py_compile main.py
 
-      - name: Test API Import
+      - name: Test Netflix API
         run: |
           python -c "from main import app; print('Netflix API loaded successfully')"
+
+      # -------------------------
+      # TRIVY SECURITY SCAN
+      # -------------------------
 
       - name: Install Trivy
         run: |
           sudo apt-get update
-          sudo apt-get install -y wget
+          sudo apt-get install -y wget gnupg
           wget -qO- https://aquasecurity.github.io/trivy-repo/deb/public.key | \
             sudo gpg --dearmor -o /usr/share/keyrings/trivy.gpg
           echo "deb [signed-by=/usr/share/keyrings/trivy.gpg] https://aquasecurity.github.io/trivy-repo/deb generic main" | \
@@ -55,6 +59,20 @@ jobs:
             --severity HIGH,CRITICAL \
             --exit-code 1 \
             .
+
+      # -------------------------
+      # SONARCLOUD
+      # -------------------------
+
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarqube-scan-action@v6
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+        with:
+          args: >
+            -Dsonar.projectKey=Vipul468_Netflix-DevSecOps
+            -Dsonar.organization=netflix-devsecops
 
       - name: CI Success
         run: |
