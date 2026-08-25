@@ -1,9 +1,9 @@
-      - name: SonarCloud Scan
-        uses: SonarSource/sonarqube-scan-action@v6
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: https://sonarcloud.io
-        with:
-          args: >
-            -Dsonar.projectKey=Vipul468_Netflix-DevSecOps
-            -Dsonar.organization=netflix-devsecops
+- name: SonarCloud Scan
+  uses: SonarSource/sonarqube-scan-action@v6
+  env:
+    SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+  with:
+    args: >
+      -Dsonar.host.url=https://sonarcloud.io
+      -Dsonar.projectKey=Vipul468_Netflix-DevSecOps
+      -Dsonar.organization=netflix-devsecops
