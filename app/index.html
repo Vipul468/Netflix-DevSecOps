@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Netflix DevSecOps</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+</head>
+
+
+<body>
+
+    <!-- =====================================
+         NAVBAR
+    ====================================== -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            NETFLIX
+        </div>
+
+
+        <nav class="nav-links">
+
+            <a
+                href="#home"
+                onclick="showHome()"
+            >
+                Home
+            </a>
+
+            <a
+                href="#movies"
+                onclick="showMovies()"
+            >
+                Movies
+            </a>
+
+            <a
+                href="#series"
+                onclick="showSeries()"
+            >
+                Series
+            </a>
+
+        </nav>
+
+
+        <!-- Search -->
+
+        <div class="search-box">
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search movies..."
+                autocomplete="off"
+            >
+
+            <button
+                onclick="searchMovies()"
+            >
+                Search
+            </button>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =====================================
+         MAIN
+    ====================================== -->
+
+    <main>
+
+
+        <!-- =================================
+             HERO
+        ================================== -->
+
+        <section
+            id="home"
+            class="hero"
+        >
+
+            <div class="hero-content">
+
+                <p class="hero-label">
+                    NETFLIX DEVSECOPS
+                </p>
+
+
+                <h1>
+                    Unlimited movies,
+                    <br>
+                    TV shows and more.
+                </h1>
+
+
+                <p class="hero-description">
+                    Watch anywhere. Cancel anytime.
+                </p>
+
+
+                <button
+                    class="hero-button"
+                    onclick="showMovies()"
+                >
+                    Browse Movies
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================
+             MOVIES
+        ================================== -->
+
+        <section
+            id="movies"
+            class="movies-section"
+        >
+
+            <div class="section-header">
+
+                <h2>
+                    Netflix Movies & Series
+                </h2>
+
+                <span id="movieCount"></span>
+
+            </div>
+
+
+            <div
+                id="movieContainer"
+                class="movie-grid"
+            >
+
+                <p class="loading">
+                    Loading movies...
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================
+             CATEGORIES
+        ================================== -->
+
+        <section
+            id="categories"
+            class="category-section"
+        >
+
+            <div class="section-header">
+
+                <h2>
+                    Categories
+                </h2>
+
+            </div>
+
+
+            <div
+                id="categoryContainer"
+                class="categories"
+            >
+
+                <p class="loading">
+                    Loading categories...
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================
+             SERIES
+        ================================== -->
+
+        <section
+            id="series"
+            class="movies-section"
+        >
+
+            <div class="section-header">
+
+                <h2>
+                    Popular Series
+                </h2>
+
+            </div>
+
+
+            <div
+                id="seriesContainer"
+                class="movie-grid"
+            >
+
+                <p class="loading">
+                    Loading series...
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =====================================
+         FOOTER
+    ====================================== -->
+
+    <footer>
+
+        <p>
+            Netflix DevSecOps Project
+        </p>
+
+        <p>
+            FastAPI + Docker + GitHub Actions + AWS EKS
+        </p>
+
+    </footer>
+
+
+
+    <!-- =====================================
+         JAVASCRIPT
+    ====================================== -->
+
+    <script src="app.js"></script>
+
+</body>
+
+</html>

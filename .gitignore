@@ -1,0 +1,13 @@
+venv/
+.env
+__pycache__/
+*.pyc
+.vscode/
+terraform.tfstate
+terraform.tfstate.*
+.terraform/
+terraform/terraform-state-backup.json
+terraform/tfplan
+*.tfstate
+*.tfstate.*
+*.tfplan
