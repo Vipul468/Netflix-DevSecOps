@@ -1,47 +1,7 @@
-name: Netflix DevSecOps CI
-
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
-
-jobs:
-  security-scan:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Trivy Filesystem Scan
-        uses: aquasecurity/trivy-action@master
+      - name: OWASP Dependency-Check
+        uses: dependency-check/Dependency-Check_Action@main
         with:
-          scan-type: fs
-          scan-ref: .
-          format: table
-          exit-code: 0
-
-      - name: Check SonarCloud Secret
-        shell: bash
-        run: |
-          if [ -z "$SONAR_TOKEN" ]; then
-            echo "SONAR_TOKEN is NOT available"
-            exit 1
-          else
-            echo "SONAR_TOKEN is available"
-          fi
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-
-      - name: SonarCloud Scan
-        uses: SonarSource/sonarqube-scan-action@v6
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        with:
-          args: >
-            -Dsonar.host.url=https://sonarcloud.io
-            -Dsonar.projectKey=Vipul468_Netflix-DevSecOps
-            -Dsonar.organization=netflix-devsecops
+          project: Netflix-DevSecOps
+          path: .
+          format: HTML
+          out: reports
